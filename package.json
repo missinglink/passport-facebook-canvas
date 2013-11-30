@@ -1,0 +1,46 @@
+{
+  "name": "passport-facebook-canvas",
+  "version": "0.0.1",
+  "description": "Facebook canvas authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "facebook",
+    "canvas",
+    "auth",
+    "authn",
+    "authentication",
+    "identity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/missinglink/passport-facebook-canvas.git"
+  },
+  "bugs": {
+    "url": "http://github.com/missinglink/passport-facebook-canvas/issues"
+  },
+  "author": {
+    "name": "Peter Johnson",
+    "email": "@insertcoffee",
+    "url": "https://github.com/missinglink/"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "passport-facebook": "1.x.x",
+    "facebook-signed-request": "0.0.2"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "chai": "1.x.x",
+    "chai-passport-strategy": "0.1.x"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+  }
+}
