@@ -5,8 +5,6 @@ Use this strategy to log users in to your Facebook Canvas app automatically.
 
 Note: This strategy simply augments [passport-facebook](https://github.com/jaredhanson/passport-facebook). If you don't need Canvas support you should use that instead.
 
-> Install
-
 ```bash
 npm install passport-facebook-canvas --save
 ```
@@ -38,6 +36,8 @@ https.createServer(certificate, app).listen(3001);
 
 > Configure Strategy
 
+Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the module name is `'passport-facebook-canvas'` instead of `'passport-facebook'`.
+
 ```javascript
 var FacebookStrategy = require('passport-facebook-canvas');
 
@@ -54,7 +54,7 @@ passport.use(new FacebookStrategy({
 ));
 ```
 
-> Configuring Routes
+> Authentication Routes
 
 Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the strategy name is `'facebook-canvas'` instead of `'facebook'`.
 
@@ -66,7 +66,7 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/error' }));
 ```
 
----
+> Canvas Route
 
 This is the `Secure Canvas Url` route that Facebook will POST data to.
 
@@ -78,7 +78,7 @@ app.post('/auth/facebook/canvas',
                                       failureRedirect: '/auth/facebook/canvas/autologin' }));
 ```
 
----
+> Auto Login Route
 
 We cannot forward the user to another URL via HTTP redirect so we have to use a client-side js **hack** instead.
 
@@ -98,5 +98,3 @@ Please suggest a better solution: https://developers.facebook.com/docs/appsonfac
 ---
 
 Now you should be able to navigate to your app page: https://apps.facebook.com/myapp/ and be prompted to approve the app. On subsequent visits you should be logged in automatically.
-
----
