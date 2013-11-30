@@ -11,11 +11,11 @@ npm install passport-facebook-canvas --save
 
 [![NPM](https://nodei.co/npm/passport-facebook-canvas.png?downloads=true&stars=true)](https://nodei.co/npm/passport-facebook-canvas/)
 
-> App Settings
+### App Settings
 
 ![Facebook Settings](http://s16.postimg.org/8jqaisnpx/app_settings2.png)
 
-> Configuring Secure Canvas Url
+### Configuring Secure Canvas Url
 
 As far as I know, Facebook has deprecated `Canvas Url` in favour of `Secure Canvas Url` and so requires setting up an SSL cert. You can produce a `self-signed certificate` with a command such as this: (don't set a password for a testing cert)
 ```bash
@@ -34,7 +34,7 @@ http.createServer(app).listen(3000);
 https.createServer(certificate, app).listen(3001);
 ```
 
-> Configure Strategy
+### Configure Strategy
 
 Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the module name is `'passport-facebook-canvas'` instead of `'passport-facebook'`.
 
@@ -54,7 +54,7 @@ passport.use(new FacebookStrategy({
 ));
 ```
 
-> Authentication Routes
+### Authentication Routes
 
 Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the strategy name is `'facebook-canvas'` instead of `'facebook'`.
 
@@ -63,10 +63,10 @@ app.get('/auth/facebook', passport.authenticate('facebook-canvas'));
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook-canvas', { successRedirect: '/',
-                                      failureRedirect: '/error' }));
+                                             failureRedirect: '/error' }));
 ```
 
-> Canvas Route
+### Canvas Route
 
 This is the `Secure Canvas Url` route that Facebook will POST data to.
 
@@ -75,10 +75,10 @@ This is the `Secure Canvas Url` route that Facebook will POST data to.
 ```javascript
 app.post('/auth/facebook/canvas', 
   passport.authenticate('facebook-canvas', { successRedirect: '/',
-                                      failureRedirect: '/auth/facebook/canvas/autologin' }));
+                                             failureRedirect: '/auth/facebook/canvas/autologin' }));
 ```
 
-> Auto Login Route
+### Auto Login Route
 
 We cannot forward the user to another URL via HTTP redirect so we have to use a client-side js **hack** instead.
 
@@ -95,6 +95,6 @@ app.get('/auth/facebook/canvas/autologin', function( req, res ){
 ```
 Please suggest a better solution: https://developers.facebook.com/docs/appsonfacebook/tutorial/#canvas
 
----
+### Done
 
 Now you should be able to navigate to your app page: https://apps.facebook.com/myapp/ and be prompted to approve the app. On subsequent visits you should be logged in automatically.
