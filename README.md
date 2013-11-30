@@ -1,7 +1,9 @@
-Authenticating users inside a Facebook Canvas app
+Passport Strategy for Facebook Canvas app
 ---
 
-Facebook Canvas apps receive an HTTPS POST to the URL defined by the `Secure Canvas URL` setting in the Facebook app settings.
+Use this strategy to log users in to your Facebook Canvas app automatically.
+
+Note: This strategy simply augments [passport-facebook](https://github.com/jaredhanson/passport-facebook). If you don't need Canvas support you should use that instead.
 
 > App Settings
 
