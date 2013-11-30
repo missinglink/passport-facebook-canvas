@@ -1,9 +1,9 @@
-Passport Strategy for Facebook Canvas app
+Passport Strategy for Facebook Canvas apps
 ---
 
 Use this strategy to log users in to your Facebook Canvas app automatically.
 
-Note: This strategy simply augments [passport-facebook](https://github.com/jaredhanson/passport-facebook). If you don't need Canvas support you should use that instead.
+**Note:** This strategy simply augments [passport-facebook](https://github.com/jaredhanson/passport-facebook), if you don't need Facebook Canvas support you should use that module instead.
 
 ```bash
 npm install passport-facebook-canvas --save
@@ -17,7 +17,7 @@ npm install passport-facebook-canvas --save
 
 ### Configuring Secure Canvas Url
 
-As far as I know, Facebook has deprecated `Canvas Url` in favour of `Secure Canvas Url` and so requires setting up an SSL cert. You can produce a `self-signed certificate` with a command such as this: (don't set a password for a testing cert)
+Facebook has deprecated `Canvas Url` in favour of `Secure Canvas Url` and so requires setting up an SSL cert. You can produce a `self-signed certificate` with a command such as this: (don't set a password for a testing cert)
 ```bash
 # Ubuntu
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout self_signed_ssl.key -out self_signed_ssl.crt
