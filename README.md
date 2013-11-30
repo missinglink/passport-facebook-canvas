@@ -58,6 +58,3 @@ Please suggest a better solution: https://developers.facebook.com/docs/appsonfac
 Now you should be able to navigate to your app page: https://apps.facebook.com/myapp/ and be prompted to approve the app. On subsequent visits you should be logged in automatically.
 
 ---
-
-ref: https://github.com/jaredhanson/passport-facebook/issues/1
-ref: https://github.com/jaredhanson/passport/issues/94
