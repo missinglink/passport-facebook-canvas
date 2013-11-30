@@ -5,6 +5,14 @@ Use this strategy to log users in to your Facebook Canvas app automatically.
 
 Note: This strategy simply augments [passport-facebook](https://github.com/jaredhanson/passport-facebook). If you don't need Canvas support you should use that instead.
 
+> Install
+
+```bash
+npm install passport-facebook-canvas --save
+```
+
+[![NPM](https://nodei.co/npm/passport-facebook-canvas.png?downloads=true&stars=true)](https://nodei.co/npm/passport-facebook-canvas/)
+
 > App Settings
 
 ![Facebook Settings](http://s16.postimg.org/8jqaisnpx/app_settings2.png)
@@ -28,7 +36,37 @@ http.createServer(app).listen(3000);
 https.createServer(certificate, app).listen(3001);
 ```
 
+> Configure Strategy
+
+```javascript
+var FacebookStrategy = require('passport-facebook-canvas');
+
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+```
+
 > Configuring Routes
+
+Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the strategy name is `'facebook-canvas'` instead of `'facebook'`.
+
+```javascript
+app.get('/auth/facebook', passport.authenticate('facebook-canvas'));
+
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook-canvas', { successRedirect: '/',
+                                      failureRedirect: '/error' }));
+```
+
+---
 
 This is the `Secure Canvas Url` route that Facebook will POST data to.
 
@@ -36,9 +74,11 @@ This is the `Secure Canvas Url` route that Facebook will POST data to.
 
 ```javascript
 app.post('/auth/facebook/canvas', 
-  passport.authenticate('facebook', { successRedirect: '/',
+  passport.authenticate('facebook-canvas', { successRedirect: '/',
                                       failureRedirect: '/auth/facebook/canvas/autologin' }));
 ```
+
+---
 
 We cannot forward the user to another URL via HTTP redirect so we have to use a client-side js **hack** instead.
 
