@@ -85,6 +85,7 @@ We cannot forward the user to another URL via HTTP redirect so we have to use a 
 ```javascript
 app.get('/auth/facebook/canvas/autologin', function( req, res ){
   res.send( '<!DOCTYPE html>' +
+            '<html>' +
               '<body>' +
                 '<script type="text/javascript">' +
                   'top.location.href = "/auth/facebook";' +
