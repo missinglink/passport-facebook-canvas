@@ -13,7 +13,7 @@ npm install passport-facebook-canvas --save
 
 ### App Settings
 
-![Facebook Settings](http://s16.postimg.org/8jqaisnpx/app_settings2.png)
+![Facebook Settings](https://s3.amazonaws.com/peter.johnson/embed-images/passport-facebook-canvas-readme1.png)
 
 ### Configuring Secure Canvas Url
 
