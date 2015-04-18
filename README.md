@@ -44,7 +44,7 @@ var FacebookStrategy = require('passport-facebook-canvas');
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "https://apps.facebook.com/yourgame"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
@@ -59,10 +59,7 @@ passport.use(new FacebookStrategy({
 Configuration is exactly the same as with [passport-facebook](https://github.com/jaredhanson/passport-facebook) except the strategy name is `'facebook-canvas'` instead of `'facebook'`.
 
 ```javascript
-app.get('/auth/facebook', passport.authenticate('facebook-canvas'));
-
-app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook-canvas', { successRedirect: '/',
+app.get('/auth/facebook', passport.authenticate('facebook-canvas', { successRedirect: '/',
                                              failureRedirect: '/error' }));
 ```
 
@@ -88,7 +85,7 @@ app.get('/auth/facebook/canvas/autologin', function( req, res ){
             '<html>' +
               '<body>' +
                 '<script type="text/javascript">' +
-                  'top.location.href = "/auth/facebook";' +
+                  'top.location.replace("/auth/facebook");' +
                 '</script>' +
               '</body>' +
             '</html>' );
